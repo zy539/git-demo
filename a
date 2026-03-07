@@ -1,5 +1,41 @@
-public class HelloWorld {
+// Main.java
+public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello, World!");
+        System.out.println("eRyder E-Bike Sharing Service\n");
+        
+        // Create object using default constructor
+        System.out.println("Creating bike with default constructor:");
+        ERyder bike1 = new ERyder();
+        bike1.printBikeDetails();
+        
+        System.out.println("\n-----------------------------------\n");
+        
+        // Create object using parameterized constructor
+        System.out.println("Creating bike with parameterized constructor:");
+        ERyder bike2 = new ERyder("ER001", 85, true, 120.5);
+        
+        // Call ride method
+        System.out.println("Calling ride() method:");
+        bike2.ride();
+        
+        System.out.println();
+        
+        // Print bike details
+        bike2.printBikeDetails();
+        
+        System.out.println("\n-----------------------------------\n");
+        
+        // Test with unavailable bike
+        System.out.println("Testing with unavailable bike:");
+        ERyder bike3 = new ERyder("ER002", 5, false, 350.0);
+        bike3.ride();
+        bike3.printBikeDetails();
+        
+        System.out.println("\n-----------------------------------\n");
+        
+        // Test battery level validation
+        System.out.println("Testing battery level validation:");
+        ERyder bike4 = new ERyder("ER003", 150, true, 75.2); // Invalid battery level
+        bike4.printBikeDetails();
     }
-}wq
+}
