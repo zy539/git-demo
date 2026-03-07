@@ -1,4 +1,4 @@
-/// ERyder.java
+/// ERyder.javajav
 public class ERyder {
     private String bikeID;
     private int batteryLevel;
@@ -84,9 +84,7 @@ public class ERyder {
     public void setKmDriven(double kmDriven) {
         this.kmDriven = kmDriven;
     }
-}
-/ Main.java
-public class Main {
+    
     public static void main(String[] args) {
         System.out.println("eRyder E-Bike Sharing Service\n");
         
@@ -125,4 +123,6 @@ public class Main {
         ERyder bike4 = new ERyder("ER003", 150, true, 75.2); // Invalid battery level
         bike4.printBikeDetails();
     }
+
 }
+
