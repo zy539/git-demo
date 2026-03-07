@@ -1,4 +1,91 @@
-// Main.java
+/// ERyder.java
+public class ERyder {
+    private String bikeID;
+    private int batteryLevel;
+    private boolean isAvailable;
+    private double kmDriven;
+    
+    // Default constructor
+    public ERyder() {
+        this.bikeID = "Unknown";
+        this.batteryLevel = 0;
+        this.isAvailable = false;
+        this.kmDriven = 0.0;
+    }
+    
+    // Constructor with all parameters
+    public ERyder(String bikeID, int batteryLevel, boolean isAvailable, double kmDriven) {
+        this.bikeID = bikeID;
+        setBatteryLevel(batteryLevel); // Using setter to validate
+        this.isAvailable = isAvailable;
+        this.kmDriven = kmDriven;
+    }
+    
+    // ride method
+    public void ride() {
+        if (batteryLevel > 0 && isAvailable) {
+            System.out.println("Bike " + bikeID + " is available for riding.");
+        } else {
+            System.out.println("Bike " + bikeID + " is not available.");
+            if (batteryLevel <= 0) {
+                System.out.println("Reason: Battery level is low (" + batteryLevel + "%)");
+            }
+            if (!isAvailable) {
+                System.out.println("Reason: Bike is currently not available");
+            }
+        }
+    }
+    
+    // Method to print bike details
+    public void printBikeDetails() {
+        System.out.println("===== Bike Details =====");
+        System.out.println("Bike ID: " + bikeID);
+        System.out.println("Battery Level: " + batteryLevel + "%");
+        System.out.println("Availability: " + (isAvailable ? "Available" : "Not Available"));
+        System.out.println("Distance Travelled: " + kmDriven + " km");
+        System.out.println("========================");
+    }
+    
+    // Getters and Setters
+    public String getBikeID() {
+        return bikeID;
+    }
+    
+    public void setBikeID(String bikeID) {
+        this.bikeID = bikeID;
+    }
+    
+    public int getBatteryLevel() {
+        return batteryLevel;
+    }
+    
+    // Setter with validation (0-100 only)
+    public void setBatteryLevel(int batteryLevel) {
+        if (batteryLevel >= 0 && batteryLevel <= 100) {
+            this.batteryLevel = batteryLevel;
+        } else {
+            System.out.println("Error: Battery level must be between 0 and 100. Setting to 0.");
+            this.batteryLevel = 0;
+        }
+    }
+    
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+    
+    public void setAvailable(boolean available) {
+        isAvailable = available;
+    }
+    
+    public double getKmDriven() {
+        return kmDriven;
+    }
+    
+    public void setKmDriven(double kmDriven) {
+        this.kmDriven = kmDriven;
+    }
+}
+/ Main.java
 public class Main {
     public static void main(String[] args) {
         System.out.println("eRyder E-Bike Sharing Service\n");
