@@ -15,7 +15,7 @@ public class Feedback {
     }
     
     // Public method analyseFeedback
-    public void analyseFeedback(boolean isConcatenation, String sent1, String sent2, 
+       public void analyseFeedback(boolean isConcatenation, String sent1, String sent2, 
                                 String sent3, String sent4, String sent5) {
         if (isConcatenation) {
             // Use concatenation method
@@ -24,11 +24,7 @@ public class Feedback {
             // Use StringBuilder method
             completeFeedback = feedbackUsingStringBuilder(sent1, sent2, sent3, sent4, sent5).toString();
         }
-        
-        // Check feedback length
-        checkFeedbackLength(completeFeedback);
-        
-        // Create review ID
+         // Create review ID
         createReviewID(firstName, lastName, completeFeedback);
     }
     
@@ -38,6 +34,7 @@ public class Feedback {
         String concatenatedFeedback = sent1 + sent2 + sent3 + sent4 + sent5;
         return concatenatedFeedback;
     }
+    
     
     // Private method for StringBuilder
     private StringBuilder feedbackUsingStringBuilder(String sent1, String sent2, String sent3, 
@@ -52,7 +49,7 @@ public class Feedback {
     }
     
     // Private method to check feedback length
-    private boolean checkFeedbackLength(String feedback) {
+    private boolean analyseFeedback(String feedback) {
         if (feedback.length() > 500) {
             longFeedback = true;
         } else {
@@ -73,7 +70,7 @@ public class Feedback {
                                                Math.min(6, namePart.length())).toUpperCase();
         }
         
-        // Extract substring from completeFeedback (index 10 to 15) and make lowercase
+        // Extract substring from completeFeedback (index 10 to 15) and transform them into lowercase
         String feedbackSubstring;
         if (completeFeedback.length() >= 15) {
             feedbackSubstring = completeFeedback.substring(10, 15).toLowerCase();
@@ -87,7 +84,7 @@ public class Feedback {
                               completeFeedback.length() + "_" + 
                               System.currentTimeMillis();
         
-        // Remove any spaces
+        // Remove spaces
         reviewID = reviewIdTemp.replace(" ", "");
     }
     
@@ -105,7 +102,7 @@ public class Feedback {
     
     // Main method
     public static void main(String[] args) {
-        // Create the five feedback sentences
+        // write the five feedback sentences
         String sent1 = "I was very satisfied with the service.";
         String sent2 = "The e-Bike is quite comfortable to ride.";
         String sent3 = "The battery life of the e-Bike is impressive.";
