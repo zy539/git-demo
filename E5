@@ -1,0 +1,131 @@
+public class Feedback {
+    // Private variables
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String completeFeedback;
+    private String reviewID;
+    private boolean longFeedback;
+    
+    // Constructor
+    public Feedback(String firstName, String lastName, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
+    
+    // Public method analyseFeedback
+    public void analyseFeedback(boolean isConcatenation, String sent1, String sent2, 
+                                String sent3, String sent4, String sent5) {
+        if (isConcatenation) {
+            // Use concatenation method
+            completeFeedback = feedbackUsingConcatenation(sent1, sent2, sent3, sent4, sent5);
+        } else {
+            // Use StringBuilder method
+            completeFeedback = feedbackUsingStringBuilder(sent1, sent2, sent3, sent4, sent5).toString();
+        }
+        
+        // Check feedback length
+        checkFeedbackLength(completeFeedback);
+        
+        // Create review ID
+        createReviewID(firstName, lastName, completeFeedback);
+    }
+    
+    // Private method for string concatenation
+    private String feedbackUsingConcatenation(String sent1, String sent2, String sent3, 
+                                             String sent4, String sent5) {
+        String concatenatedFeedback = sent1 + sent2 + sent3 + sent4 + sent5;
+        return concatenatedFeedback;
+    }
+    
+    // Private method for StringBuilder
+    private StringBuilder feedbackUsingStringBuilder(String sent1, String sent2, String sent3, 
+                                                    String sent4, String sent5) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(sent1);
+        sb.append(sent2);
+        sb.append(sent3);
+        sb.append(sent4);
+        sb.append(sent5);
+        return sb;
+    }
+    
+    // Private method to check feedback length
+    private boolean checkFeedbackLength(String feedback) {
+        if (feedback.length() > 500) {
+            longFeedback = true;
+        } else {
+            longFeedback = false;
+        }
+        return longFeedback;
+    }
+    
+    // Private method to create review ID
+    private void createReviewID(String firstName, String lastName, String completeFeedback) {
+        // Extract substring from firstName+lastName (index 2 to 6) and make uppercase
+        String namePart = firstName + lastName;
+        String nameSubstring;
+        if (namePart.length() >= 6) {
+            nameSubstring = namePart.substring(2, 6).toUpperCase();
+        } else {
+            nameSubstring = namePart.substring(Math.min(2, namePart.length()), 
+                                               Math.min(6, namePart.length())).toUpperCase();
+        }
+        
+        // Extract substring from completeFeedback (index 10 to 15) and make lowercase
+        String feedbackSubstring;
+        if (completeFeedback.length() >= 15) {
+            feedbackSubstring = completeFeedback.substring(10, 15).toLowerCase();
+        } else {
+            feedbackSubstring = completeFeedback.substring(Math.min(10, completeFeedback.length()), 
+                                                           Math.min(15, completeFeedback.length())).toLowerCase();
+        }
+        
+        // Combine all parts
+        String reviewIdTemp = nameSubstring + feedbackSubstring + 
+                              completeFeedback.length() + "_" + 
+                              System.currentTimeMillis();
+        
+        // Remove any spaces
+        reviewID = reviewIdTemp.replace(" ", "");
+    }
+    
+    // toString method
+    @Override
+    public String toString() {
+        return "Feedback Details:\n" +
+               "First Name: " + firstName + "\n" +
+               "Last Name: " + lastName + "\n" +
+               "Email: " + email + "\n" +
+               "Complete Feedback: " + completeFeedback + "\n" +
+               "Long Feedback: " + longFeedback + "\n" +
+               "Review ID: " + reviewID;
+    }
+    
+    // Main method
+    public static void main(String[] args) {
+        // Create the five feedback sentences
+        String sent1 = "I was very satisfied with the service.";
+        String sent2 = "The e-Bike is quite comfortable to ride.";
+        String sent3 = "The battery life of the e-Bike is impressive.";
+        String sent4 = "The customer support was helpful and responsive.";
+        String sent5 = "I would recommend this e-Bike to my friends and family.";
+        
+        // Create Feedback object with user details
+        Feedback feedback = new Feedback("John", "Doe", "john.doe@email.com");
+        
+        // Call analyseFeedback method
+        // Using true for isConcatenation to test string concatenation method
+        feedback.analyseFeedback(true, sent1, sent2, sent3, sent4, sent5);
+        
+        // Print the object
+        System.out.println(feedback.toString());
+        
+        // You can also test with StringBuilder method by changing isConcatenation to false
+        System.out.println("\n--- Testing with StringBuilder method ---");
+        Feedback feedback2 = new Feedback("Jane", "Smith", "jane.smith@email.com");
+        feedback2.analyseFeedback(false, sent1, sent2, sent3, sent4, sent5);
+        System.out.println(feedback2.toString());
+    }
+}
