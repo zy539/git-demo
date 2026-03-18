@@ -270,7 +270,7 @@ public class UserRegistration {
         String cardNumStr = Long.toString(cardNumber);
         int length = cardNumStr.length();
         
-        // Create censored card number
+        // Mask the card number for privacy
         String censoredPart;
         if (length > 4) {
             censoredPart = cardNumStr.substring(0, length - 4).replaceAll(".", "*");

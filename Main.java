@@ -6,7 +6,7 @@ public class Main {
         // Call the registration method
         registration.registration();
         
-        // Print the object - this will automatically call toString()
+        // Print the object 
         System.out.println(registration);
         
         // Close the scanner
