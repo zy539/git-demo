@@ -49,7 +49,7 @@ public class Feedback {
     }
     
     // Private method to check feedback length
-    private boolean analyseFeedback(String feedback) {
+    private boolean checkFeedbackLength(String feedback) {
         if (feedback.length() > 500) {
             longFeedback = true;
         } else {
